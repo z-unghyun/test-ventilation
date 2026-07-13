@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#eaf0e6" />
+    <meta name="description" content="현재 날씨와 미세먼지를 바탕으로 환기 여부와 시간을 알려주는 서비스" />
+    <title>숨틈 — 지금, 창문을 열어도 될까요?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#" aria-label="숨틈 홈">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M8 7v18M24 7v18M8 9h16M8 23h16M16 9v14"/><path d="M11 16c2.2-2.6 4.5-2.6 7 0 1.2 1.2 2.3 1.2 3.5 0"/></svg>
+          </span>
+          <span>숨틈</span>
+        </a>
+        <form class="search" id="search-form" role="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+          <input id="city-input" type="search" placeholder="도시를 검색해보세요" autocomplete="off" aria-label="도시 검색" />
+          <button type="submit">검색</button>
+        </form>
+        <button class="location-button" id="location-button" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.3 6-11a6 6 0 1 0-12 0c0 5.7 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
+          <span id="header-location">서울특별시</span>
+        </button>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="eyebrow"><span></span> 오늘의 환기 리포트</div>
+          <h1 id="hero-title"><span id="greeting">좋은 아침이에요.</span><br />지금, 창문을 열어도 될까요?</h1>
+          <p>바깥 공기와 날씨를 살펴보고 가장 좋은 환기 타이밍을 알려드릴게요.</p>
+        </section>
+
+        <div class="status-message" id="status-message" role="status" aria-live="polite">
+          <span class="spinner"></span> 바깥 공기를 살펴보고 있어요…
+        </div>
+
+        <section class="dashboard" id="dashboard" aria-label="환기 리포트" hidden>
+          <article class="decision-card" id="decision-card">
+            <div class="decision-topline">
+              <span class="decision-label">지금의 환기 추천</span>
+              <span class="live-badge"><i></i> LIVE</span>
+            </div>
+            <div class="decision-content">
+              <div class="decision-copy">
+                <div class="decision-icon" id="decision-icon" aria-hidden="true"></div>
+                <div>
+                  <h2 id="decision-title">환기하기 좋은 시간이에요</h2>
+                  <p id="decision-description">공기 상태가 쾌적해요. 창문을 활짝 열어보세요.</p>
+                </div>
+              </div>
+              <div class="duration-block">
+                <span>추천 환기 시간</span>
+                <strong><b id="duration">20</b>분</strong>
+              </div>
+            </div>
+            <div class="progress-track" aria-hidden="true"><span id="decision-progress"></span></div>
+            <p class="tip" id="decision-tip">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M8.5 14.5A6 6 0 1 1 15.5 14.5c-.9.7-1.5 1.7-1.5 2.5h-4c0-.8-.6-1.8-1.5-2.5Z"/></svg>
+              맞은편 창문까지 함께 열면 공기가 더 빠르게 순환해요.
+            </p>
+          </article>
+
+          <section class="condition-section" aria-labelledby="condition-title">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">CURRENT CONDITIONS</span>
+                <h2 id="condition-title">바깥 공기 상태</h2>
+              </div>
+              <div class="updated"><span></span><time id="updated-at">방금 업데이트</time></div>
+            </div>
+
+            <div class="metric-grid">
+              <article class="metric-card air-card">
+                <div class="metric-heading">
+                  <span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M4 8h10c3.5 0 3.5-5 0-5-1.4 0-2.4.7-2.8 1.6M4 12h15c3.5 0 3.5 5 0 5-1.4 0-2.4-.7-2.8-1.6M4 16h7"/></svg></span>
+                  <div><h3>미세먼지</h3><p>PM10</p></div>
+                </div>
+                <div class="metric-value"><strong id="pm10">—</strong><span>㎍/㎥</span></div>
+                <div class="metric-footer"><span class="status-pill" id="pm10-status">확인 중</span><span class="mini-note" id="pm10-note"></span></div>
+              </article>
+
+              <article class="metric-card air-card">
+                <div class="metric-heading">
+                  <span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M5 9.5h8.5a2.5 2.5 0 1 0-2.3-3.5M4 13h14a2 2 0 1 1-1.8 2.9M5 17h7"/></svg></span>
+                  <div><h3>초미세먼지</h3><p>PM2.5</p></div>
+                </div>
+                <div class="metric-value"><strong id="pm25">—</strong><span>㎍/㎥</span></div>
+                <div class="metric-footer"><span class="status-pill" id="pm25-status">확인 중</span><span class="mini-note" id="aqi-note"></span></div>
+              </article>
+
+              <article class="metric-card weather-card">
+                <div class="metric-heading">
+                  <span class="metric-icon warm"><svg viewBox="0 0 24 24"><path d="M12 14V5a3 3 0 0 0-6 0v9a5 5 0 1 0 6 0Z"/><path d="M9 8v8"/></svg></span>
+                  <div><h3>기온</h3><p id="weather-label">현재 날씨</p></div>
+                </div>
+                <div class="metric-value"><strong id="temperature">—</strong><span>°C</span></div>
+                <div class="metric-footer"><span class="status-pill" id="temp-status">확인 중</span><span class="mini-note" id="feels-like"></span></div>
+              </article>
+
+              <article class="metric-card humidity-card">
+                <div class="metric-heading">
+                  <span class="metric-icon blue"><svg viewBox="0 0 24 24"><path d="M12 3S6 9.4 6 14a6 6 0 0 0 12 0c0-4.6-6-11-6-11Z"/></svg></span>
+                  <div><h3>습도</h3><p>상대습도</p></div>
+                </div>
+                <div class="metric-value"><strong id="humidity">—</strong><span>%</span></div>
+                <div class="metric-footer"><span class="status-pill" id="humidity-status">확인 중</span><span class="mini-note" id="wind-note"></span></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="timeline-section" aria-labelledby="timeline-title">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">TODAY'S FORECAST</span>
+                <h2 id="timeline-title">오늘의 환기 타이밍</h2>
+              </div>
+              <p>미세먼지와 날씨를 함께 고려했어요</p>
+            </div>
+            <div class="timeline" id="timeline"></div>
+          </section>
+        </section>
+      </main>
+
+      <footer>
+        <div><strong>숨틈</strong><span>오늘도 좋은 공기와 함께하세요.</span></div>
+        <p>날씨: MET Norway (Open-Meteo 예비 경로) · 대기질: Open-Meteo<br />측정값은 예보 모델 기반이며, 민감군은 공식 지역 지침을 우선해 주세요.</p>
+      </footer>
+    </div>
+
+    <template id="good-icon-template">
+      <svg viewBox="0 0 64 64"><path d="M13 28h22c8 0 8-11 0-11-3.2 0-5.6 1.6-6.5 4M13 38h32c8 0 8 11 0 11-3.2 0-5.5-1.5-6.5-4M13 47h17"/><path class="leaf" d="M42 23c4-8 11-9 15-8-1 8-6 13-15 13-4 0-7-1-9-3 3 0 6-.5 9-2Z"/></svg>
+    </template>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
