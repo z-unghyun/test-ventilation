@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#eaf0e6" />
-    <meta name="description" content="현재 날씨와 미세먼지를 바탕으로 환기 여부와 시간을 알려주는 서비스" />
+    <meta name="description" content="현재 미세먼지·날씨를 함께 분석해 환기 여부와 권장 시간을 알려주는 무료 생활 정보 서비스 숨틈입니다." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="숨틈 — 지금, 창문을 열어도 될까요?" />
+    <meta property="og:description" content="미세먼지와 날씨를 함께 살펴보고 오늘의 환기 타이밍을 확인하세요." />
     <title>숨틈 — 지금, 창문을 열어도 될까요?</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1625871832298260" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,12 +20,17 @@
   <body>
     <div class="page-shell">
       <header class="site-header">
-        <a class="brand" href="#" aria-label="숨틈 홈">
+        <a class="brand" href="/" aria-label="숨틈 홈">
           <span class="brand-mark" aria-hidden="true">
             <svg viewBox="0 0 32 32"><path d="M8 7v18M24 7v18M8 9h16M8 23h16M16 9v14"/><path d="M11 16c2.2-2.6 4.5-2.6 7 0 1.2 1.2 2.3 1.2 3.5 0"/></svg>
           </span>
           <span>숨틈</span>
         </a>
+        <nav class="primary-nav" aria-label="주요 메뉴">
+          <a href="#report">환기 리포트</a>
+          <a href="#guide">환기 가이드</a>
+          <a href="/about.html">서비스 소개</a>
+        </nav>
         <form class="search" id="search-form" role="search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
           <input id="city-input" type="search" placeholder="도시를 검색해보세요" autocomplete="off" aria-label="도시 검색" />
@@ -33,7 +43,7 @@
       </header>
 
       <main>
-        <section class="hero" aria-labelledby="hero-title">
+        <section class="hero" id="report" aria-labelledby="hero-title">
           <div class="eyebrow"><span></span> 오늘의 환기 리포트</div>
           <h1 id="hero-title"><span id="greeting">좋은 아침이에요.</span><br />지금, 창문을 열어도 될까요?</h1>
           <p>바깥 공기와 날씨를 살펴보고 가장 좋은 환기 타이밍을 알려드릴게요.</p>
@@ -128,10 +138,70 @@
             <div class="timeline" id="timeline"></div>
           </section>
         </section>
+
+        <section class="editorial" id="guide" aria-labelledby="guide-title">
+          <div class="editorial-heading">
+            <span class="section-kicker">VENTILATION GUIDE</span>
+            <h2 id="guide-title">좋은 공기를 들이는 환기 가이드</h2>
+            <p>숨틈은 숫자만 보여주지 않습니다. 왜 지금 환기해도 되는지, 집에서는 어떻게 실천하면 좋은지 함께 설명합니다.</p>
+          </div>
+
+          <div class="guide-grid">
+            <article class="guide-card">
+              <span class="guide-number">01</span>
+              <h3>짧고 넓게 열기</h3>
+              <p>창문을 조금 열어 오래 두기보다 맞은편 창문이나 방문을 함께 열어 공기가 지나갈 길을 만드세요. 바깥 공기가 좋다면 10~20분 정도의 집중 환기가 효율적입니다.</p>
+            </article>
+            <article class="guide-card">
+              <span class="guide-number">02</span>
+              <h3>조리 뒤에는 바로 환기</h3>
+              <p>굽거나 튀기는 조리 중에는 실내 미세입자가 빠르게 늘 수 있습니다. 레인지후드를 켜고 조리가 끝난 뒤에도 창문을 열어 냄새와 습기를 밖으로 내보내세요.</p>
+            </article>
+            <article class="guide-card">
+              <span class="guide-number">03</span>
+              <h3>나쁜 날은 타이밍 조절</h3>
+              <p>초미세먼지나 미세먼지 농도가 높은 때에는 창문을 닫고, 오늘의 시간대별 예보에서 농도가 낮아지는 시간을 골라 짧게 환기하는 편이 좋습니다.</p>
+            </article>
+          </div>
+
+          <div class="method-panel" aria-labelledby="method-title">
+            <div>
+              <span class="section-kicker">HOW IT WORKS</span>
+              <h2 id="method-title">추천은 이렇게 계산해요</h2>
+            </div>
+            <div class="method-copy">
+              <p>현재 위치의 PM10·PM2.5 농도에 기온, 상대습도, 강수량, 풍속을 함께 반영합니다. 한 요소라도 환기에 부적합하면 ‘짧게 환기’ 또는 ‘환기 미루기’로 보수적으로 안내합니다.</p>
+              <dl class="criteria-list">
+                <div><dt>좋음</dt><dd>대기질과 날씨가 모두 무난한 경우 10~20분</dd></div>
+                <div><dt>주의</dt><dd>미세먼지·비·강풍·기온 중 주의 요소가 있는 경우 약 5분</dd></div>
+                <div><dt>미루기</dt><dd>고농도 미세먼지, 많은 비 또는 강풍이 있는 경우</dd></div>
+              </dl>
+              <a class="text-link" href="/about.html#criteria">세부 판정 기준 보기 <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <section class="faq" aria-labelledby="faq-title">
+            <div class="editorial-heading compact">
+              <span class="section-kicker">FREQUENTLY ASKED</span>
+              <h2 id="faq-title">자주 묻는 질문</h2>
+            </div>
+            <div class="faq-list">
+              <details><summary>비 오는 날에도 환기해야 하나요?</summary><p>약한 비에는 빗물이 들이치지 않는 방향의 창을 짧게 열 수 있습니다. 강수가 많거나 바람이 강하면 환기를 미루고, 조리·욕실 환풍기 등 기계 환기를 활용하세요.</p></details>
+              <details><summary>미세먼지가 보통이면 창문을 열어도 되나요?</summary><p>대체로 가능하지만 민감군은 개인 상태와 지역의 공식 안내를 우선해야 합니다. 숨틈은 기온·습도·비·바람까지 함께 확인해 권장 시간을 조절합니다.</p></details>
+              <details><summary>현재 위치는 저장되나요?</summary><p>아니요. 위치 버튼을 누를 때 브라우저가 제공한 좌표는 날씨와 대기질을 조회하는 데만 사용하며 숨틈 서버에 저장하지 않습니다. 자세한 내용은 개인정보처리방침에서 확인할 수 있습니다.</p></details>
+            </div>
+          </section>
+        </section>
       </main>
 
       <footer>
-        <div><strong>숨틈</strong><span>오늘도 좋은 공기와 함께하세요.</span></div>
+        <div class="footer-brand"><strong>숨틈</strong><span>오늘도 좋은 공기와 함께하세요.</span></div>
+        <nav class="footer-nav" aria-label="하단 메뉴">
+          <a href="/about.html">서비스 소개</a>
+          <a href="/privacy.html">개인정보처리방침</a>
+          <a href="/terms.html">이용안내</a>
+          <a href="https://github.com/z-unghyun/test-ventilation/issues" rel="noopener noreferrer">문의하기</a>
+        </nav>
         <p>날씨: MET Norway (Open-Meteo 예비 경로) · 대기질: Open-Meteo<br />측정값은 예보 모델 기반이며, 민감군은 공식 지역 지침을 우선해 주세요.</p>
       </footer>
     </div>
