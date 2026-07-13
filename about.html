@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#eaf0e6" />
+    <meta name="description" content="미세먼지와 날씨를 바탕으로 환기 타이밍을 안내하는 숨틈의 운영 목적, 데이터 출처, 판정 기준을 소개합니다." />
+    <meta name="robots" content="index, follow" />
+    <title>서비스 소개와 판정 기준 — 숨틈</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header static-header">
+        <a class="brand" href="/" aria-label="숨틈 홈"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 7v18M24 7v18M8 9h16M8 23h16M16 9v14"/><path d="M11 16c2.2-2.6 4.5-2.6 7 0 1.2 1.2 2.3 1.2 3.5 0"/></svg></span><span>숨틈</span></a>
+        <nav class="primary-nav" aria-label="주요 메뉴"><a href="/">환기 리포트</a><a href="/#guide">환기 가이드</a><a href="/privacy.html">개인정보처리방침</a></nav>
+      </header>
+
+      <main class="static-main">
+        <header class="static-hero"><span class="section-kicker">ABOUT SOOMTEUM</span><h1>숨틈은 어떤 서비스인가요?</h1><p>창문을 열기 전에 여러 예보를 번갈아 확인하는 번거로움을 줄이기 위해 만든 무료 생활 정보 서비스입니다.</p></header>
+        <article class="prose">
+          <section><h2>만든 이유</h2><p>환기는 실내의 냄새, 습기, 조리 과정에서 생긴 오염물질을 밖으로 내보내는 간단한 생활 습관입니다. 하지만 바깥 미세먼지가 높거나 비바람이 강한 때에는 창문을 여는 것이 오히려 불편할 수 있습니다. 숨틈은 흩어진 대기질과 날씨 정보를 한 화면에 모으고, 지금 할 수 있는 행동으로 바꾸어 보여줍니다.</p><p>도시를 검색하거나 현재 위치 사용을 허용하면 해당 지역의 현재 상태와 앞으로의 시간대별 전망을 다시 계산합니다. 회원가입이나 유료 결제 없이 이용할 수 있습니다.</p></section>
+
+          <section id="criteria"><h2>환기 판정 기준</h2><p>숨틈은 PM10, PM2.5, 강수량, 풍속, 기온, 상대습도를 함께 봅니다. 현재 구현된 기준은 아래와 같으며, 한 가지라도 강한 제한 조건에 해당하면 더 보수적인 결과를 선택합니다.</p>
+            <h3>대기질</h3><ul><li>PM2.5가 35㎍/㎥ 또는 PM10이 80㎍/㎥를 넘으면 짧은 환기를 권합니다.</li><li>PM2.5가 75㎍/㎥ 또는 PM10이 150㎍/㎥를 넘으면 환기를 미루도록 안내합니다.</li></ul>
+            <h3>날씨</h3><ul><li>시간당 강수량이 1.5mm 이상이거나 풍속이 14m/s 이상이면 환기를 미루도록 안내합니다.</li><li>약한 비, 9m/s 이상의 바람, -5°C 이하 또는 33°C 이상의 기온, 88% 이상의 습도에서는 약 5분의 짧은 환기를 권합니다.</li><li>제한 조건이 없고 기온이 10~26°C, 습도가 75% 이하라면 20분, 그 밖에는 10분을 권합니다.</li></ul>
+            <div class="notice-box"><strong>읽어두세요.</strong><p>이 기준은 일상적인 판단을 돕기 위한 자체 규칙이며 의학적 진단이나 공공기관의 행동요령을 대체하지 않습니다. 어린이, 고령자, 임산부, 호흡기·심혈관 질환자 등 민감군은 개인 상태와 지역 보건·환경 당국의 안내를 우선하세요.</p></div>
+          </section>
+
+          <section><h2>데이터 출처와 갱신</h2><p>대기질과 시간대별 예보는 Open-Meteo가 제공하는 모델 기반 자료를 사용합니다. 현재 기상은 MET Norway Locationforecast를 우선 조회하며, 이용 환경에 따라 Open-Meteo 예보로 대체됩니다. 표시 시각은 사용자가 리포트를 불러온 시점입니다.</p><p>관측소의 실측값과 예보 모델 값은 위치, 갱신 시각, 지형에 따라 다를 수 있습니다. 중요한 의사결정에는 에어코리아, 기상청 등 거주 지역의 공식 정보를 함께 확인해 주세요.</p></section>
+
+          <section><h2>운영 원칙</h2><ul><li>사용자가 찾는 환기 정보를 첫 화면에서 바로 제공합니다.</li><li>추천에 사용한 수치와 기준을 숨기지 않습니다.</li><li>광고가 서비스 기능이나 본문보다 앞서지 않도록 운영합니다.</li><li>오류를 발견하면 출처와 기준을 확인하고 수정 내역을 서비스에 반영합니다.</li></ul><p>오류 제보와 개선 의견은 <a href="https://github.com/z-unghyun/test-ventilation/issues" rel="noopener noreferrer">공개 문의 게시판</a>에 남겨 주세요.</p></section>
+        </article>
+      </main>
+
+      <footer><div class="footer-brand"><strong>숨틈</strong><span>오늘도 좋은 공기와 함께하세요.</span></div><nav class="footer-nav" aria-label="하단 메뉴"><a href="/about.html">서비스 소개</a><a href="/privacy.html">개인정보처리방침</a><a href="/terms.html">이용안내</a><a href="https://github.com/z-unghyun/test-ventilation/issues" rel="noopener noreferrer">문의하기</a></nav><p>일상 환기를 돕는 무료 생활 정보 서비스</p></footer>
+    </div>
+  </body>
+</html>
